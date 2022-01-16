@@ -87,3 +87,24 @@ const transaction = () => {
     // }
 }
 
+
+
+
+//     const notes = [500, 100, 50, 20, 10, 5, 1]
+//     let noteCounter;
+
+
+
+//     if (atmAmount < 100 || atmAmount > 100000) {
+//         alert("Amount not allowed")
+//     } else {
+//         for (let i = 0; i < notes.length; i++) {
+//             if (atmAmount >= notes[i]) {
+//                 noteCounter = Math.floor(atmAmount / notes[i])
+//                 console.log(noteCounter);
+//                 atmAmount = atmAmount - noteCounter * notes[i]
+//                 console.log(`${noteCounter} : ${notes[i]}`);
+//             }
+//         }
+//     }
+
