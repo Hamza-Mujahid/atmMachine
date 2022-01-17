@@ -10,8 +10,21 @@
 
 <body>
     <div class="atmMachine">
-        <input type="number" id="atmInput" placeholder="Enter your ammount!">
+        <input type="text" id="atmInput" placeholder="Enter your ammount!">
+        <select name="prfrn" id="prfrn">
+            <option value="Note" disabled selected>Note Preference</option>
+            <option value="500">Rs 500/-</option>
+            <option value="100">Rs 100</option>
+            <option value="50">Rs 50/-</option>
+            <option value="20">Rs 20/-</option>
+            <option value="10">Rs 10/-</option>
+            <option value="5">Rs 5/-</option>
+            <option value="1">Rs 1/-</option>
+        </select>
         <button onclick="transaction()">Enter</button>
+    </div>
+    <div id="atmMoney">
+        
     </div>
 
     <script src="./app.js"></script>

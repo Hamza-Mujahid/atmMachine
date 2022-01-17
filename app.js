@@ -1,110 +1,69 @@
-// my transaction
+//transaction function
 const transaction = () => {
-    const NotePrfrn = parseInt(document.getElementById('prfrn').value);
-    let atmAmount = parseInt(document.getElementById('atmInput').value);
+    const atmAmount = parseInt(document.getElementById("atmInput").value);
+    const notePrfrn = parseInt(document.getElementById("prfrn").value);
+    const atmMoney = document.getElementById("atmMoney");
+    //let currencyLimit = 200;
+    const notes = [500, 100, 50, 20, 10, 5, 1];
+    let noteCounter = Array(7).fill(0)
+    const prfrnValue = Math.floor(atmAmount / notePrfrn);
+    // console.log(noteCounter, notePrfrn, prfrnValue);
 
-    // to get number of notes that are requested
-    const prfrnValue = atmAmount / NotePrfrn
-    // console.log(`prfrnValue ${prfrnValue}`);
-
-    const notes = [500, 100, 50, 20, 10, 5, 1]
-    // limit of notes
-    const limitValue = 200
-
-
-    if (atmAmount >= 100 && atmAmount <= 100000) {
-
-
-        let noteCounter = Array(7).fill(0)
-
-        if (noteCounter[i] > 200) {
-            // num of perefered notes 
-            const prfrdNotes = Math.floor(atmAmount / notePrfrn)
-
-            let notePrfrnIndex = notes.indexOf(notePrfrn)
-            // console.log(notePrfrnIndex);
-            notes.splice(notePrfrnIndex, 1);
-            let noteCount = notePrfrn * limitValue
-            // console.log(noteCount);
-            const newCount = noteCounter.unshift(noteCount);
-            // console.log(newCount);
-            noteCounter[i] = Math.floor(atmAmount / notes[i])
-            atmAmount = atmAmount - (noteCounter[i] * notes[i])
-
-            // console.log(noteCount);
-            console.log(`${notes[i]} : ${noteCounter[i]}`);
+    //Spliting the perefered note
+    for (let i = 0; i < notes.length; i++) {
+        if (notePrfrn === notes[i]) {
+            notes.splice(i, 1)
         }
-        else {
 
-            //counting notes
-            for (let i = 0; i < notes.length; i++) {
+    }
+    // if the required notes are above limit
+    if (prfrnValue > 200) {
+        let prfrnNoteAmt = notePrfrn * 200
+        let remainsAmt = atmAmount - prfrnNoteAmt
+        console.log(`${notePrfrn} : ${200}`);
+        let listItem = document.createElement("p");
 
-                noteCounter[i] = Math.floor(atmAmount / notes[i])
-                atmAmount = atmAmount - (noteCounter[i] * notes[i])
+        listItem.innerText = `${notePrfrn} : ${200}`;
+        atmMoney.appendChild(listItem)
 
-                console.log(`${notes[i]} : ${noteCounter[i]}`)
-                // noteCounter.splice
-                // console.log(noteCounter.splice(0, 1))
+        // // Note Counter
+        for (let j = 0; j < notes.length; j++) {
+            if (remainsAmt >= notes[j]) {
+                noteCounter = Math.floor(remainsAmt / notes[j]);
+                remainsAmt -= noteCounter * notes[j];
+                // console.log(remainsAmt);
+                console.log(`${notes[j]} : ${noteCounter}`);
+                let listItem = document.createElement("p");
+
+                listItem.innerText = `${notes[j]} : ${noteCounter}`;
+                atmMoney.appendChild(listItem)
 
             }
-
         }
     }
+    else {
 
+        // if required value is within limit
+        let prfrnNoteAmt = notePrfrn * prfrnValue
+        let remainsAmt = atmAmount - prfrnNoteAmt
+        console.log(remainsAmt, notes);
+        console.log(`${notePrfrn} :  ${prfrnValue}`);
+        let listItem = document.createElement("p");
 
-    // // condition fo distribution
-    // if (prfrnValue > 200) {
-    //     if (NotePrfrn === 50) {
-    //         const leftValue = prfrnValue - limitValue
-    //         console.log(`${NotePrfrn} = ${limitValue}`);
-    //         const prfrnValAmt = NotePrfrn * limitValue
-    //         const remainingVal = atmAmount - (prfrnValAmt);
-    //         const fiveHndNOtes = Math.floor(remainingVal / 500);
-    //         console.log(`500 = ${fiveHndNOtes}`);
-    //         const fiveHnNotesamt = 500 * fiveHndNOtes
-    //         const remainingvalue2 = remainingVal - fiveHnNotesamt
-    //         const oneHndNotes = Math.floor(remainingvalue2 / 100)
-    //         console.log(`100 = ${oneHndNotes}`);
-    //         const oneHndNoteVal = oneHndNotes * 100
-    //         const remaining3 = remainingvalue2 - oneHndNoteVal
-    //         const twentyNotes = Math.floor(remaining3 / 20)
-    //         console.log(`20 = ${twentyNotes}`);
-    //         const twentyNoteVal = twentyNotes * 20
-    //         const remaining4 = remaining3 - twentyNoteVal
-    //         const tenNOtes = Math.floor(remaining4 / 10)
-    //         console.log(`10 = ${tenNOtes}`);
-    //         const tenNoteval = tenNOtes * 10
-    //         const remaining5 = remaining4 - tenNoteval
-    //         const fiveNotes = Math.floor(remaining5 / 5)
-    //         console.log(`5 = ${fiveNotes}`);
-    //         const fiveNoteVal = fiveNotes * 5
-    //         const remaining6 = remaining5 - fiveNoteVal
-    //         const oneNotes = Math.floor(remaining6 / 1)
-    //         console.log(`1 = ${oneNotes}`);
+        listItem.innerText = `${notePrfrn} :  ${prfrnValue}`;
+        atmMoney.appendChild(listItem)
 
-    //     }
+        // Note Counter
+        for (let k = 0; k < notes.length; k++) {
+            if (remainsAmt >= notes[k]) {
+                noteCounter = Math.floor(remainsAmt / notes[k]);
+                remainsAmt -= noteCounter * notes[k];
+                console.log(`${notes[k]} : ${noteCounter}`);
+                let listItem = document.createElement("p");
 
-    // }
+                listItem.innerText = `${notes[k]} : ${noteCounter}`;
+                atmMoney.appendChild(listItem)
+            }
+        }
+    }
 }
-
-
-
-
-//     const notes = [500, 100, 50, 20, 10, 5, 1]
-//     let noteCounter;
-
-
-
-//     if (atmAmount < 100 || atmAmount > 100000) {
-//         alert("Amount not allowed")
-//     } else {
-//         for (let i = 0; i < notes.length; i++) {
-//             if (atmAmount >= notes[i]) {
-//                 noteCounter = Math.floor(atmAmount / notes[i])
-//                 console.log(noteCounter);
-//                 atmAmount = atmAmount - noteCounter * notes[i]
-//                 console.log(`${noteCounter} : ${notes[i]}`);
-//             }
-//         }
-//     }
-
