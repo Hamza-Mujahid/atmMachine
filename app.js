@@ -9,60 +9,74 @@ const transaction = () => {
     const prfrnValue = Math.floor(atmAmount / notePrfrn);
     // console.log(noteCounter, notePrfrn, prfrnValue);
 
-    //Spliting the perefered note
-    for (let i = 0; i < notes.length; i++) {
-        if (notePrfrn === notes[i]) {
-            notes.splice(i, 1)
-        }
 
-    }
-    // if the required notes are above limit
-    if (prfrnValue > 200) {
-        let prfrnNoteAmt = notePrfrn * 200
-        let remainsAmt = atmAmount - prfrnNoteAmt
-        console.log(`${notePrfrn} : ${200}`);
+    if (atmAmount > 100000 || atmAmount < 100) {
         let listItem = document.createElement("p");
-
-        listItem.innerText = `${notePrfrn} : ${200}`;
+        listItem.innerText = `This Transaction is not allowed`;
         atmMoney.appendChild(listItem)
-
-        // // Note Counter
-        for (let j = 0; j < notes.length; j++) {
-            if (remainsAmt >= notes[j]) {
-                noteCounter = Math.floor(remainsAmt / notes[j]);
-                remainsAmt -= noteCounter * notes[j];
-                // console.log(remainsAmt);
-                console.log(`${notes[j]} : ${noteCounter}`);
-                let listItem = document.createElement("p");
-
-                listItem.innerText = `${notes[j]} : ${noteCounter}`;
-                atmMoney.appendChild(listItem)
-
-            }
-        }
     }
     else {
 
-        // if required value is within limit
-        let prfrnNoteAmt = notePrfrn * prfrnValue
-        let remainsAmt = atmAmount - prfrnNoteAmt
-        console.log(remainsAmt, notes);
-        console.log(`${notePrfrn} :  ${prfrnValue}`);
-        let listItem = document.createElement("p");
+        //Spliting the perefered note
+        for (let i = 0; i < notes.length; i++) {
+            if (notePrfrn === notes[i]) {
+                notes.splice(i, 1)
+            }
 
-        listItem.innerText = `${notePrfrn} :  ${prfrnValue}`;
-        atmMoney.appendChild(listItem)
+        }
+        // if the required notes are above limit
+        if (prfrnValue > 200) {
 
-        // Note Counter
-        for (let k = 0; k < notes.length; k++) {
-            if (remainsAmt >= notes[k]) {
-                noteCounter = Math.floor(remainsAmt / notes[k]);
-                remainsAmt -= noteCounter * notes[k];
-                console.log(`${notes[k]} : ${noteCounter}`);
-                let listItem = document.createElement("p");
+            if (notePrfrn === 1) {
 
-                listItem.innerText = `${notes[k]} : ${noteCounter}`;
-                atmMoney.appendChild(listItem)
+            }
+
+            let prfrnNoteAmt = notePrfrn * 200
+            let remainsAmt = atmAmount - prfrnNoteAmt
+            console.log(`${notePrfrn} : ${200}`);
+            let listItem = document.createElement("p");
+
+            listItem.innerText = `${notePrfrn} : ${200}`;
+            atmMoney.appendChild(listItem)
+
+            // // Note Counter
+            for (let j = 0; j < notes.length; j++) {
+                if (remainsAmt >= notes[j]) {
+                    noteCounter = Math.floor(remainsAmt / notes[j]);
+                    remainsAmt -= noteCounter * notes[j];
+                    // console.log(remainsAmt);
+                    console.log(`${notes[j]} : ${noteCounter}`);
+                    let listItem = document.createElement("p");
+
+                    listItem.innerText = `${notes[j]} : ${noteCounter}`;
+                    atmMoney.appendChild(listItem)
+
+                }
+            }
+        }
+        else {
+
+            // if required value is within limit
+            let prfrnNoteAmt = notePrfrn * prfrnValue
+            let remainsAmt = atmAmount - prfrnNoteAmt
+            console.log(remainsAmt, notes);
+            console.log(`${notePrfrn} :  ${prfrnValue}`);
+            let listItem = document.createElement("p");
+
+            listItem.innerText = `${notePrfrn} :  ${prfrnValue}`;
+            atmMoney.appendChild(listItem)
+
+            // Note Counter
+            for (let k = 0; k < notes.length; k++) {
+                if (remainsAmt >= notes[k]) {
+                    noteCounter = Math.floor(remainsAmt / notes[k]);
+                    remainsAmt -= noteCounter * notes[k];
+                    console.log(`${notes[k]} : ${noteCounter}`);
+                    let listItem = document.createElement("p");
+
+                    listItem.innerText = `${notes[k]} : ${noteCounter}`;
+                    atmMoney.appendChild(listItem)
+                }
             }
         }
     }
